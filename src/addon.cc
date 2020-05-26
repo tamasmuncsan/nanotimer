@@ -1,8 +1,9 @@
-#include "plf_nanotimer.h"
-#include "addon.h"
-#include <iostream>
+// Copyright 2020 Tamas Muncsan
 
-NativeAddon::NativeAddon(const Napi::CallbackInfo& info) 
+#include "../src/plf_nanotimer.h"
+#include "../src/addon.h"
+
+NativeAddon::NativeAddon(const Napi::CallbackInfo& info)
 : Napi::ObjectWrap<NativeAddon>(info) { }
 
 Napi::Value NativeAddon::MillisecondDelay(const Napi::CallbackInfo& info) {
@@ -15,8 +16,11 @@ Napi::Value NativeAddon::MillisecondDelay(const Napi::CallbackInfo& info) {
     }
 
     if (!info[0].IsNumber()) {
-        Napi::TypeError::New(env, "You need to pass a double value as a callback!")
-          .ThrowAsJavaScriptException();
+        Napi::TypeError::New(
+          env,
+          "You need to pass a double value as a callback!")
+        .ThrowAsJavaScriptException();
+
         return env.Null();
     }
 
@@ -42,7 +46,7 @@ Napi::Value NativeAddon::MicrosecondDelay(const Napi::CallbackInfo& info) {
     }
 
     double delayTime = info[0].As<Napi::Number>().DoubleValue();
-    
+
     plf::microsecond_delay(delayTime);
     return env.Null();
 }

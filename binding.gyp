@@ -4,11 +4,12 @@
       "target_name": "addon",
       "sources": [
         "src/binding.cc",
-        "src/addon.cc"
+        "src/addon.cc",
+        "src/addon.h"
       ],
       'cflags!': [ '-fno-exceptions' ],
       'cflags_cc!': [ '-fno-exceptions' ],
-      'include_dirs': ["<!@(node -p \"require('node-addon-api').include\")"],
+      'include_dirs': [ "<!@(node -p \"require('node-addon-api').include\")" ],
       'dependencies': ["<!(node -p \"require('node-addon-api').gyp\")"],
       'conditions': [
         ['OS=="win"', {

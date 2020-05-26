@@ -1,5 +1,5 @@
 {
-  "name": "nanotimer",
+  "name": "nanosec",
   "version": "0.0.1",
   "description": "Small and simple timer lib",
   "main": "lib/index.js",
@@ -7,7 +7,9 @@
     "lib/index.js"
   ],
   "scripts": {
-    "test": "echo 'PASSED!'",
+    "test": "jest lib/*.js",
+    "lint": "eslint lib/*.js",
+    "cpplint": "cpplint src/addon.cc src/addon.h src/binding.cc",
     "install": "node-gyp rebuild"
   },
   "keywords": [
@@ -20,10 +22,20 @@
   "author": "Tamas Muncsan",
   "license": "ISC",
   "gypfile": true,
-  "dependencies": {},
+  "dependencies": {
+    "bindings": "^1.5.0"
+  },
   "devDependencies": {
-    "bindings": "^1.5.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "husky": "^4.2.5",
     "jest": "^26.0.1",
     "node-addon-api": "^3.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && npm run lint && npm run cpplint"
+    }
   }
 }

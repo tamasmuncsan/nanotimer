@@ -1,0 +1,29 @@
+{
+  "name": "nanotimer",
+  "version": "0.0.1",
+  "description": "Small and simple timer lib",
+  "main": "lib/index.js",
+  "files": [
+    "lib/index.js"
+  ],
+  "scripts": {
+    "test": "echo 'PASSED!'",
+    "install": "node-gyp rebuild"
+  },
+  "keywords": [
+    "npm",
+    "nodejs",
+    "cpp",
+    "binding",
+    "n-api"
+  ],
+  "author": "Tamas Muncsan",
+  "license": "ISC",
+  "gypfile": true,
+  "dependencies": {},
+  "devDependencies": {
+    "bindings": "^1.5.0",
+    "jest": "^26.0.1",
+    "node-addon-api": "^3.0.0"
+  }
+}
